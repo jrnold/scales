@@ -14,16 +14,20 @@ show_shape <- function(shapes, labels = TRUE) {
   n <- length(shapes)
   ncol <- ceiling(sqrt(n))
   nrow <- ceiling(n / ncol)
+  # scale x/y
+  m <- 0.5
   x <- c(shapes, rep(NA, nrow * ncol - length(shapes)))
   x <- matrix(x, ncol = ncol, byrow = TRUE)
-  x <- x[nrow(x):1, ]
-  plot(0, 0, xlim = c(1, ncol(x)), ylim = c(1, nrow(x)), type = "n",
+  x <- x[nrow(x):1, , drop = FALSE]
+  plot(0, 0, xlim = c(1 * m, ncol(x) * m), ylim = c(1 * m, nrow(x) * m), type = "n",
        xlab = "", ylab = "", axes = FALSE)
+  old <- par(mar = c(0, 0, 0, 0))
+  on.exit(par(old))
   for (i in seq_len(ncol(x))) {
     for (j in seq_len(nrow(x))) {
-      points(i, j, pch = x[j, i])
+      points(i * m, j * m, pch = x[j, i])
       if (labels) {
-        text(i, j, x[j, i], pos = 1, col = "gray70")
+        text(i * m, j * m, x[j, i], pos = 1, col = "gray70")
       }
     }
   }
@@ -75,7 +79,7 @@ show_col <- function(colours, labels = TRUE, borders = NULL) {
   nrow <- ceiling(n / ncol)
 
   x <- c(colours, rep(NA, nrow * ncol - length(colours)))
-  x <- matrix(colours, ncol = ncol, byrow = TRUE)
+  x <- matrix(x, ncol = ncol, byrow = TRUE)
 
   old <- par(pty = "s", mar = c(0, 0, 0, 0))
   on.exit(par(old))
