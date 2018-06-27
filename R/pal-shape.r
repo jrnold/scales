@@ -1,6 +1,9 @@
 #' Shape palette (discrete).
 #'
 #' @param solid should shapes be solid or not?
+#' @examples
+#' show_shape(shape_pal()(6))
+#' show_shape(shape_pal(solid = TRUE)(6))
 #' @export
 shape_pal <- function(solid = TRUE) {
   force(solid)

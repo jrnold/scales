@@ -2,6 +2,8 @@
 #'
 #' Based on a set supplied by Richard Pearson, University of Manchester
 #'
+#' @examples
+#' show_linetype(linetype_pal()(13))
 #' @export
 linetype_pal <- function() {
   types <- c(

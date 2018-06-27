@@ -12,3 +12,7 @@ shape_pal(solid = TRUE)
 \description{
 Shape palette (discrete).
 }
+\examples{
+show_shape(shape_pal()(6))
+show_shape(shape_pal(solid = TRUE)(6))
+}
